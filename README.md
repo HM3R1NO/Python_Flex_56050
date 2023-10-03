@@ -67,7 +67,7 @@ Here are some ideas to get you started:
 <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/59059d9d1a2c092696dc66e00931cc1181a4ce1f/icons/Arduino.svg" alt="arduino" width="45" height="45"/>
 <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/59059d9d1a2c092696dc66e00931cc1181a4ce1f/icons/PHP-Dark.svg" alt="php" width="45" height="45"/>
 <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/59059d9d1a2c092696dc66e00931cc1181a4ce1f/icons/RaspberryPi-Dark.svg" alt="raspy" width="45" height="45"/>
-<img src="https://raw.githubusercontent.com/tandpfun/skill-icons/59059d9d1a2c092696dc66e00931cc1181a4ce1f/icons/C.svg" alt="c" width="45" height="45"/> 
+
   
 
 
