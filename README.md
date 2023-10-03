@@ -42,14 +42,10 @@ Here are some ideas to get you started:
 <!--Aca es la imagen el href-> es el link donde quieren que valla y el src -> donde esta la imagen que van a poner //width = es el tamaño
 <p align="center"><a href="https://bikelovers.vercel.app/" target="_blank" rel="noopener noreferrer"><img width="20%" src="https://www.linkedin.com/in/emanuel-juli%C3%A1n-tevez/" alt="logo del proyecto"></a></p>-->
 
-
-## SOBRE MI
-- Soy un emprendedor fanatico de la robotica y la programacion y ***amigable*** con el medio ambiente.
-- Portfolio: https://netlify.app/
   
 <br>  
 
-<h2> 🚀 &nbsp;Tecnologías que manejo</h2>
+<h2> 🚀 &nbsp;Tecnologías </h2>
 <p align="left">
 
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="45" height="45" />
