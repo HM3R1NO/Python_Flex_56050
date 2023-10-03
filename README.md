@@ -15,7 +15,7 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-# **HOLA SOY EL README DE LA COMISION PYTHON FLEZ 56050**
+# **README DE LA COMISION PYTHON FLEX 56050**
 ## Comentario.
 
 ##  *Instalación de proyecto* 
