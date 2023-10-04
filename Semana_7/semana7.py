@@ -4,17 +4,17 @@ Crear una clase Auto que contenga 2 atributos de instancia.
 Con esta clase crear un auto y mostrar los datos del auto creado.
 """
 
-class Auto:
-  def __init__(self, marca, modelo):
-    self.marca = marca
-    self.modelo = modelo
+# class Auto:
+  
+#   def __init__(self,marca,modelo):
+#     self.marca = marca
+#     self.modelo = modelo
+  
+# mi_auto = Auto("Toyota","Corolla")
 
-mi_auto = Auto('Ford', 'K')
-
-
-print(f"Marca: {mi_auto.marca}")
-print(f"Modelo: {mi_auto.modelo}")
-
+# print(f"Marca: {mi_auto.marca}")
+# print(f"Marca: {mi_auto.modelo}")    
+  
 
 """
 ? Pasemoslo a Python
@@ -25,50 +25,192 @@ Aclaraciones Generales:
 * Se deberá instanciar, al menos, dos objetos pertenecientes a la clase Alumno.
 """
 
-class Alumno:
-  def __init__(self, nombre, nota):
-    self.nombre = nombre
-    self.nota = nota
+# class Alumno:
+#   def __init__(self, nombre, nota):
+#     self.nombre = nombre
+#     self.nota = nota
+    
+#   def imprimir(self):
+#     print(self.nombre, " ", self.nota)
 
-  def imprimir(self):
-    print(self.nombre, self.nota)
+#   def resultado(self):
+#     print('Aprobado' if self.nota > 7 else 'Desaprobado' )
+  
+#   def __str__(self) -> str:
+#     return f"{self.nombre} {self.nota}"
+    
+# alumno1=Alumno('Luisana',5)
+# alumno2=Alumno('Emanuel',7)
+# alumno1.imprimir()
+# alumno2.imprimir()
+# print("+++++++++++++++++++++++++++++*")
+# print(alumno1)
 
-  def resultado(self):
-    print('Aprobado' if self.nota > 5 else 'Desaprobado')
 
-alumno1 = Alumno('Pepe', 3)
-alumno2 = Alumno('Ricardo', 6)
+# class Alumno:
+#     tipo = "Público"
+
+#     def __init__ (self, nombre, nota):
+#         self.nombre = nombre
+#         self.nota = nota
+
+
+#     def imprimir(self):
+#         print(f"El Alumno se llama {self.nombre} y su nota es {self.nota}")
+
+#     def resultado(self):
+#         if self.nota <= 5:
+#             print("El estudiante ha reprobado")
+#         else:
+#             print("El estudiante ha aprobado")
+
+# alumno1 = Alumno("Francisco", 3)
+# alumno2 = Alumno("Florencia", 9)
+
+# alumno1.imprimir()
+# alumno1.resultado()
+
+# alumno2.imprimir()
+# alumno2.resultado()
+
+"""
+!Exta
+"""
+"""
+Atributos privados
+"""
+
+# class Alumno:
+#     def __init__(self, nombre, nota):
+#         self.nombre = nombre
+#         self.__nota = nota
+
+#     def __imprimir(self):
+#         print(f"Nombre del alumno: {self.nombre}")
+#         print(f"Nota del alumno: {self.__nota}")
+    
+#     def __str__(self):
+#       return f" {self.nombre}"
+
+# alumno1 = Alumno("Emanuel", 6)
+# # alumno1.imprimir()
+# print("=================")
+# print(alumno1.nombre)
+# print(alumno1._nota)
+
+#Metodo getter
+# class Alumno:
+#     def __init__(self, nombre, nota):
+#         self._nombre = nombre
+#         self._nota = nota
+
+#     def obtener_nombre(self):
+#         return self._nombre
+
+#     def obtener_nota(self):
+#         return self._nota
+
+#     def imprimir(self):
+#         print(f"Nombre del alumno: {self._nombre}")
+#         print(f"Nota del alumno: {self._nota}")
+
+# # Crear una instancia de la clase Alumno
+# alumno1 = Alumno("Juan", 8)
+
+# # Utilizar los métodos getter para obtener los atributos privados
+# nombre = alumno1.obtener_nombre()
+# nota = alumno1.obtener_nota()
+
+# print(f"Nombre del alumno: {nombre}")
+# print(f"Nota del alumno: {nota}")
+
+
+#Metodo setter
+# class Alumno:
+#     def __init__(self, nombre, nota):
+#         self._nombre = nombre
+#         self._nota = nota
+
+#     def obtener_nombre(self):
+#         return self._nombre
+
+#     def obtener_nota(self):
+#         return self._nota
+
+#     def establecer_nombre(self, nuevo_nombre):
+#         self._nombre = nuevo_nombre
+
+#     def establecer_nota(self, nueva_nota):
+#         self._nota = nueva_nota
+
+#     def imprimir(self):
+#         print(f"Nombre del alumno: {self._nombre}")
+#         print(f"Nota del alumno: {self._nota}")
+
+# # Crear una instancia de la clase Alumno
+# alumno1 = Alumno("Juan", 8)
+
+# # Utilizar el método setter para modificar el atributo privado
+# alumno1.establecer_nombre("María")
+# # Obtener y mostrar los nuevos valores de los atributos
+# nombre = alumno1.obtener_nombre()
+# nota = alumno1.obtener_nota()
+
+# print(f"Nombre del alumno: {nombre}")
+# print(f"Nota del alumno: {nota}")
+
+# print("=================")
+# alumno1.establecer_nota(9)
+
+# # Obtener y mostrar los nuevos valores de los atributos
+# nombre = alumno1.obtener_nombre()
+# nota = alumno1.obtener_nota()
+
+# print(f"Nombre del alumno: {nombre}")
+# print(f"Nota del alumno: {nota}")
 
 """
 ? Vehiculos
 
 Crear una Clase Vehiculo de la cual van a heredar la clase Auto (del microdesafio) y la clase Lancha (nueva, tiene como atributo nombre de motor). Ademas, crear una clase MovimientosEmbarcacion de la cual tambien heredara Lancha.   
 Implementar los metodos arrancar, tocar_bocina, virar_a_estribor, virar_a_babor y  abrir_capot en la clase que corresponda. Solo deben mostrar un mensaje que se ejecuto la accion.
-"""
+ """
 
-class Vehiculo:
-  def arrancar(self):
-    print('Brrrum')
-  def tocar_bocina(self):
-    print('Piiii!!! Piiii!!!')
-
-class MovimientosEmbarcacion:
-  def virar_a_estribor(self):
-    print('Virando a estribor.')
-  def virar_a_babor(self):
-    print('Virando a babor.')
-
-class Auto(Vehiculo):
-  def __init__(self, marca, modelo):
-    self.marca = marca
-    self.modelo = modelo
-  def abrir_capot(self):
-    print('Abriendo capot.')
-
-class Lancha(Vehiculo, MovimientosEmbarcacion):
-  def __init__(self, motor):
-    self.motor = motor
+# class Vehiculo:
+#   def arrancar(self):
+#     print("Arranque")
     
+#   def tocar_bocina(self):
+#     print("Tu tu")
+
+# class MovimientoEmbarcacion:
+#   def virar_a_estribo(self):
+#     print("Viro Eb")
+#   def virar_a_babor(self):
+#     print("Viro Bb")
+
+# class Auto(Vehiculo):
+#   def __init__(self, marca, modelo):
+#     self.marca = marca
+#     self.modelo = modelo
+#   def abrir_capot(self):
+#     print("Abro capot")
+  
+# class Lancha(Vehiculo, MovimientoEmbarcacion):
+#   def __init__(self, motor):
+#     self.motor = motor
+  
+    
+# barquito = Lancha("Audi")
+# barquito.arrancar()
+# barquito.virar_a_babor()
+
+
+# autito = Auto("Fiat", "500")
+# autito.abrir_capot()
+
+
+
 """
 ?Televisores
 
@@ -76,7 +218,7 @@ Crear un programa que al pasarle una lista de televisores devuelva el total a pa
 Tener en cuenta los siguientes puntos sobre los televisores:
 1. Sus atributos son precio base, color, consumo energético (letras entre A y F) y peso.
 2. Los colores disponibles son blanco, negro, rojo, azul y gris.
-3. Por defecto, el color sera blanco, el consumo energético sera F, el precio_base es de 100 $ y el peso de 5 kg.
+!3. Por defecto, el color sera blanco, el consumo energético sera F, el precio_base es de 100 $ y el peso de 5 kg.
 4. Tienen 3 funcionalidades:
   * Una para comprobar que la letra (consumo energético) es correcta, sino es correcta usara la letra por defecto. Se invocara al crear el objeto y sera privada.
   * Otra para comprobar que el color es correcto (no importa si el nombre esta en mayúsculas o en minúsculas), sino usa el color por defecto. Se invocara al crear el objeto y sera privada al igual que la anterior.
@@ -107,51 +249,52 @@ Probar con los siguientes televisores:
 * precio base 300, color violeta, consumo energético B y peso 23  
 """
 
-class Televisor:
+# class Televisor:
 
-  colores = ['blanco', 'negro', 'rojo', 'azul', 'gris']
-  letras_costo = {'A': 100, 'B': 80, 'C': 60, 'D': 50, 'E': 30, 'F': 10}
+#   colores = ['blanco', 'negro', 'rojo', 'azul', 'gris']
+#   letras_costo = {'A': 100, 'B': 80, 'C': 60, 'D': 50, 'E': 30, 'F': 10}
 
-  def __init__(self, precio_base=100, color='blanco', letra_consumo='F', peso=5):
-    self.precio_base = precio_base
-    self.color = self.__comprobar_color(color)
-    self.letra_consumo = self.__comprobar_consumo(letra_consumo)
-    self.peso = peso
+#   def __init__(self, precio_base=100, color='blanco', letra_consumo='F', peso=5):
+#     self.precio_base = precio_base
+#     self.color = self.__comprobar_color(color)
+#     self.letra_consumo = self.__comprobar_consumo(letra_consumo)
+#     self.peso = peso
 
-  def __comprobar_consumo(self, letra):
-    return letra if letra.upper() in self.letras_costo.keys() else 'F'
+#   def __comprobar_consumo(self, letra):
+#     return letra if letra.upper() in self.letras_costo.keys() else 'F'
 
-  def __comprobar_color(self, color):
-    return color if color.lower() in self.colores else 'blanco'
+#   def __comprobar_color(self, color):
+#     return color if color.lower() in self.colores else 'blanco'
 
-  def precio_final(self):
-    if 0 <= self.peso <= 19:
-      precio_x_tamanio = 10
-    elif 20 <= self.peso <= 49:
-      precio_x_tamanio = 50
-    elif 50 <= self.peso <= 19:
-      precio_x_tamanio = 80
-    elif 80 <= self.peso:
-      precio_x_tamanio = 100
-    precio_x_consumo = self.letras_costo.get(self.letra_consumo)
-    return self.precio_base + precio_x_consumo + precio_x_tamanio
-
-
-def total_a_pagar(lista_teles):
-    suma = 0
-    for tele in lista_teles:
-      suma += tele.precio_final()
-    return suma
+#   def precio_final(self):
+#     if 0 <= self.peso <= 19:
+#       precio_x_tamanio = 10
+#     elif 20 <= self.peso <= 49:
+#       precio_x_tamanio = 50
+#     elif 50 <= self.peso <= 19:
+#       precio_x_tamanio = 80
+#     elif 80 <= self.peso:
+#       precio_x_tamanio = 100
+#     precio_x_consumo = self.letras_costo.get(self.letra_consumo)
+#     return self.precio_base + precio_x_consumo + precio_x_tamanio
 
 
-compras = [
-    Televisor(250,'rojo', 'E', 10),
-    Televisor(143,'negro', 'C', 13),
-    Televisor(54,'gris', 'A', 7),
-    Televisor(300,'violeta', 'B', 23),
-]
+# def total_a_pagar(lista_teles):
+#     suma = 0
+#     for tele in lista_teles:
+#       suma += tele.precio_final()
+#     return suma
 
-print(total_a_pagar(compras))
+
+# compras = [
+#     Televisor(250,'rojo', 'E', 10),
+#     Televisor(143,'negro', 'C', 13),
+#     Televisor(54,'gris', 'A', 7),
+#     Televisor(300,'violeta', 'B', 23),
+#     Televisor()
+# ]
+
+# print(total_a_pagar(compras))
 
 """
 ? Electrodomesticos
@@ -166,7 +309,6 @@ La Lavadora:
 * Y, al precio final, si tiene una carga mayor de 30 kg, aumentara el precio $50
 
 """
-
 class Electrodomestico:
 
   colores = ['blanco', 'negro', 'rojo', 'azul', 'gris']
@@ -197,15 +339,13 @@ class Electrodomestico:
     return self.precio_base + precio_x_consumo + precio_x_tamanio
 
 
-def Televisor(Electrodomestico):
-  # v1
+class Televisor(Electrodomestico):
+
   def __init__(self, precio_base, color, letra_consumo, peso, resolucion=20, sintonizador_TDT=False):
     super(self).__init__(precio_base, color, letra_consumo, peso)
-
-  # v2
-  # def __init__(self, resolucion=20, sintonizador_TDT=False, *args, **kwargs):
-  #   super(self).__init__(*args, **kwargs)
-
+    self.resolucion = resolucion
+    self.sintonizador_TDT = sintonizador_TDT
+    
   def precio_final(self):
     extras = 0
     if self.resolucion > 40:
@@ -215,14 +355,13 @@ def Televisor(Electrodomestico):
     return super(self).precio_final()
 
 
-def Lavadora(Electrodomestico):
-  # v1
+class Lavadora(Electrodomestico):
+ 
   def __init__(self, precio_base, color, letra_consumo, peso, carga=5):
     super(self).__init__(precio_base, color, letra_consumo, peso)
-
-  # v2
-  # def __init__(self, carga=5, *args, **kwargs):
-  #   super(self).__init__(*args, **kwargs)
+    self.carga = carga
 
   def precio_final(self):
     return super(self).precio_final() + 50 if self.carga > 30 else 0
+  
+  
