@@ -1,0 +1,20 @@
+[
+        {
+                "nombre": "Ema",
+                "apellido": "Tevez",
+                "telefono": "111",
+                "direccion": "aca"
+        },
+        {
+                "nombre": "Pepe",
+                "apellido": "Perez",
+                "telefono": "222",
+                "direccion": "alla"
+        },
+        {
+                "nombre": "Jose",
+                "apellido": "Jose",
+                "telefono": "4444",
+                "direccion": "www"
+        }
+]

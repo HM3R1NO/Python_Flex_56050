@@ -1,0 +1,17 @@
+6.1: Errores | Python
+https://www.youtube.com/watch?v=wR8HopZ9X3g
+6.2: Excepciones | Python
+https://www.youtube.com/watch?v=3OTDVddqVOs
+6.3-Introducción a la Programación Orientada a Objetos (POO) | Python
+https://www.youtube.com/watch?v=layaw837DlU
+6.4-Diagrama de clases | Python
+https://www.youtube.com/watch?v=wrR1Q1_aOX4
+
+7.1-Parte I: Clases, atributos y métodos | Python
+https://www.youtube.com/watch?v=A-r7NCocoqs
+7.1-Parte II: Métodos especiales | Python
+https://www.youtube.com/watch?v=P4jr4UGvCCQ
+7.3: Herencias | Python
+https://www.youtube.com/watch?v=EYEWT3-uJdQ
+7.4-Poliformismo | Python
+https://www.youtube.com/watch?v=4ohqEacqwRQ

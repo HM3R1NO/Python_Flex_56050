@@ -1,0 +1,6 @@
+Este es un ejemplo de lectura de archivos en Python.
+Puede ser útil para procesar archivos de texto.
+Espero que estos ejemplos te sean de ayuda.
+
+Aquí comienza un nuevo párrafo.
+Este es el segundo párrafo.
