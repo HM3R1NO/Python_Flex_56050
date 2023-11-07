@@ -12,6 +12,7 @@ class ProfesorForm(forms.Form):
     email = forms.EmailField()
     edad = forms.IntegerField()
     
+
     
     
     

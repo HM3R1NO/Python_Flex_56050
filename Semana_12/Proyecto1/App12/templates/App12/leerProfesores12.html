@@ -15,10 +15,13 @@
                 {% if miFormulario.errors %}
                     <p style="color: red">Estan mal los datos, revisar</p>
                 {% endif %}
+                <a class="btn btn-warning" href="{% url 'profesor12' %}"> Crear Profe</a>
                 {% for p in profesores %}
                     <li>{{p}}</li>
                     <button>
                         <a class="btn btn-dark" href="{% url 'eliminarProfesor12' p.nombre %}"> Eliminar</a>
+                        <a class="btn btn-dark" href="{% url 'editarProfesor12' p.nombre %}"> Editar</a>
+                        
                     </button>
                 {% endfor %}
                 <br>

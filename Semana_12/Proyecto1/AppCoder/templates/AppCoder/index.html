@@ -27,8 +27,9 @@
                 <a class="text-success" href="{% url 'estudianteForm' %}"> Estudiante Form</a>
                 
                 <a class="text-warning" href="">Entregable</a>
-                <a class="text-gray" href="">Sign Up</a>
-                <a class="btn btn-primary" href="">Sign Up</a>
+                <a class="text-gray" href="{% url 'Register'%}">Register</a>
+                <a class="btn btn-primary" href="{% url 'Login'%}">Login</a>
+                <a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a>
             </div>
         </nav>
         <!-- Masthead-->
@@ -40,6 +41,15 @@
                             <!-- Page heading-->
                             <a class="btn btn-success" href="{% url 'profesor12' %}"> ProfesorForm</a>
                             <a class="btn btn-success" href="{% url 'leerProfesores12' %}"> VerProfesores</a>
+                            <a class="btn btn-success" href="{% url 'ListaCursos' %}"> CURSO CBV</a>
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
                             <h1 class="mb-5">Generate more leads with a professional landing page!</h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->

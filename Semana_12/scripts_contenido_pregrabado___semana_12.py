@@ -9,6 +9,22 @@ Original file is located at
 # CRUD
 """
 
+#=================mensajes======================================
+from django.contrib import messages
+
+
+
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+messages.success(request, 'El profesor ha sido creado con éxito.')
+
+#=============================================================
 def __str__(self):
         return f"Nombre: {self.nombre} - Apellido {self.apellidade} - E-Mail {self.email} - Edad {self.edad}"
 
@@ -93,7 +109,7 @@ def eliminarProfesor12(request, profesor_nombre):
 
 path('eliminarProfesor12/<profesor_nombre>/', eliminarProfesor12, name="eliminarProfesor12")
 
-def editarProfesor(request, profesor_nombre):
+def editarProfesor12(request, profesor_nombre):
 
     # Recibe el nombre del profesor que vamos a modificar
     profesor = Profesor.objects.get(nombre=profesor_nombre)
@@ -102,7 +118,7 @@ def editarProfesor(request, profesor_nombre):
     if request.method == 'POST':
 
         # aquí mellega toda la información del html
-        miFormulario = ProfesorFormulario(request.POST)
+        miFormulario = ProfesorForm(request.POST)
 
         print(miFormulario)
 
@@ -111,109 +127,92 @@ def editarProfesor(request, profesor_nombre):
             informacion = miFormulario.cleaned_data
 
             profesor.nombre = informacion['nombre']
-            profesor.apellido = informacion['apellido']
+            profesor.apellidade = informacion['apellidade']
             profesor.email = informacion['email']
-            profesor.profesion = informacion['profesion']
+            profesor.edad = informacion['edad']
 
             profesor.save()
 
             # Vuelvo al inicio o a donde quieran
-            return render(request, "AppCoder/inicio.html")
+            return render(request, "AppCoder/index.html")
     # En caso que no sea post
     else:
         # Creo el formulario con los datos que voy a modificar
-        miFormulario = ProfesorFormulario(initial={'nombre': profesor.nombre, 'apellido': profesor.apellido,
-                                                   'email': profesor.email, 'profesion': profesor.profesion})
+        miFormulario = ProfesorFormulario(initial={'nombre': profesor.nombre, 'apellidade': profesor.apellidade,
+                                                   'email': profesor.email, 'edad': profesor.edad})
 
     # Voy al html que me permite editar
-    return render(request, "AppCoder/editarProfesor.html", {"miFormulario": miFormulario, "profesor_nombre": profesor_nombre})
+    return render(request, "App12/editarProfesor12.html", {"miFormulario": miFormulario, "profesor_nombre": profesor_nombre})
 
-path('editarProfesor/<profesor_nombre>/', views.editarProfesor, name="EditarProfesor")
+path('editarProfesor12/<profesor_nombre>/', editarProfesor12, name="editarProfesor12")
 
 {% extends "AppCoder/padre.html" %}
-
 {% load static %}
-
 {% block contenidoQueCambia %}
-
     <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
     <h1>Formulario - Editar Profesor</h1>
-
     {% if miFormulario.errors %}
-
-    <p style="color: red;"> Están mal los datos, revisar</p>
-
+        <p style="color: red;"> Están mal los datos, revisar</p>
     {% endif %}
 
     <form action="" method="POST">{% csrf_token %}
-
         <!-- Acá está la magia de Django-->
-
         <table>
-
             {{ miFormulario.as_table }}
-
         </table>
-
         <input type="submit", value="Enviar">
-
     </form>
-
-
-
 {% endblock %}
 
 <button>
-            <a href="{% url 'EditarProfesor' p.nombre %}"> Editar</a>
-        </button>
+    <a class="btn btn-dark" href="{% url 'editarProfesor12' p.nombre %}"> Editar</a>
+</button>
 
 """# Clases basadas en vistas"""
 
+#·==========================================================
 from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
 
 class CursoListView(ListView):
     model = Curso
     context_object_name = "cursos"
-    template_name = "AppCoder/curso_lista.html"
-
-from django.views.generic.detail import DetailView
+    template_name = "App12/curso_lista.html"
 
 class CursoDetailView(DetailView):
     model = Curso
-    template_name = "AppCoder/curso_detalle.html"
-
-from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
+    template_name = "App12/curso_detalle.html"
 
 class CursoCreateView(CreateView):
     model = Curso
-    template_name = "AppCoder/curso_crear.html"
+    template_name = "App12/curso_crear.html"
     success_url = reverse_lazy('ListaCursos')
     fields = ['nombre', 'camada']
 
-from django.views.generic.edit import UpdateView
-
 class CursoUpdateView(UpdateView):
     model = Curso
-    template_name = "AppCoder/curso_editar.html"
+    template_name = "App12/curso_editar.html"
     success_url = reverse_lazy('ListaCursos')
     fields = ['nombre', 'camada']
 
 from django.views.generic.edit import DeleteView
 class CursoDeleteView(DeleteView):
     model = Curso
-    template_name = "AppCoder/curso_borrar.html"
+    template_name = "App12/curso_borrar.html"
     success_url = reverse_lazy('ListaCursos')
 
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-path('cursos/lista', views.CursoListView.as_view(), name = "ListaCursos"),
-    path('cursos/nuevo', views.CursoCreateView.as_view(), name = "NuevoCurso"),
-    path('cursos/<pk>', views.CursoDetailView.as_view(), name = "DetalleCurso"),
-    path('cursos/<pk>/editar', views.CursoUpdateView.as_view(), name = "EditarCurso"),
-    path('cursos/<pk>/borrar', views.CursoDeleteView.as_view(), name = "BorrarCurso"),
+path('cursos/lista', CursoListView.as_view(), name = "ListaCursos"),
+path('cursos/nuevo', CursoCreateView.as_view(), name = "NuevoCurso"),
+path('cursos/<pk>', CursoDetailView.as_view(), name = "DetalleCurso"),
+path('cursos/<pk>/editar', CursoUpdateView.as_view(), name = "EditarCurso"),
+path('cursos/<pk>/borrar', CursoDeleteView.as_view(), name = "BorrarCurso"),
 
 {% extends "AppCoder/padre.html" %}
 {% load static %}
@@ -286,16 +285,18 @@ path('cursos/lista', views.CursoListView.as_view(), name = "ListaCursos"),
 
         </p>
     </li>
-
-
 {% endfor %}
-{% endblock contenidoQueCambia  %}
 
+
+{% endblock cuerpo  %}
+#======================================================
 """# Login - registro -logout"""
-
-{% extends "AppCoder/padre.html" %}
+{% extends 'AppCoder/index.html'%}
 {% load static %}
-{% block contenidoQueCambia %}
+
+{% block titulo%}Login{% endblock titulo%}
+
+{% block cuerpo %}
 <h1>Login</h1>
 
 
@@ -304,7 +305,7 @@ path('cursos/lista', views.CursoListView.as_view(), name = "ListaCursos"),
         {{ form.as_p }}
     <button type="submit">Inciar sesion</button>
 </form>
-{% endblock contenidoQueCambia  %}
+{% endblock cuerpo  %}
 
 path('login', views.login_request, name="Login")
 
@@ -312,32 +313,19 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 
 def login_request(request):
-
-
     if request.method == 'POST':
         form = AuthenticationForm(request, data = request.POST)
 
-
         if form.is_valid():  # Si pasó la validación de Django
-
-
             usuario = form.cleaned_data.get('username')
             contrasenia = form.cleaned_data.get('password')
-
-
             user = authenticate(username= usuario, password=contrasenia)
 
-
             login(request, user)
-            return render(request, "AppCoder/inicio.html", {"mensaje": f'Bienvenido {user.username}'})
-
-
-
+            return render(request, "AppCoder/index.html", {"mensaje": f'Bienvenido {user.username}'})
     else:
         form = AuthenticationForm()
-
-
-    return render(request, "AppCoder/login.html", {"form": form})
+    return render(request, "App12/login.html", {"form": form})
 
 {% if mensaje %}
     <p>
@@ -358,26 +346,26 @@ def register(request):
 
                   username = form.cleaned_data['username']
                   form.save()
-                  return render(request,"AppCoder/inicio.html" ,  {"mensaje":"Usuario Creado :)"})
+                  return render(request,"AppCoder/index.html" ,  {"mensaje":"Usuario Creado :)"})
 
       else:
             #form = UserCreationForm()
             form = UserRegisterForm()
 
-      return render(request,"AppCoder/registro.html" ,  {"form":form})
+      return render(request,"App12/registro.html" ,  {"form":form})
 
-path('register', views.register, name="Register"),
+path('register', register, name="Register"),
 
-{% extends "AppCoder/padre.html" %}
+{% extends "AppCoder/index.html" %}
 {% load static %}
-{% block contenidoQueCambia %}
+{% block cuerpo %}
 <h1>Registro</h1>
 <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Registrate!</button>
 </form>
-{% endblock contenidoQueCambia  %}
+{% endblock cuerpo  %}
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -406,3 +394,56 @@ path('logout', LogoutView.as_view(template_name='AppCoder/logout.html'), name='L
 <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
                 <a class="btn btn-primary" href="{% url 'Register' %}">Registro</a>
                 <a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a>
+                
+                
+                
+                
+                
+                
+                
+                
+ path("login/", login_view, name="Login"),
+ 
+ def login_view(request):
+
+    if request.method == "POST": #click al boton iniciar sesion
+
+        form_inicio = AuthenticationForm(request, data = request.POST)
+        
+        if form_inicio.is_valid(): #el formulario nos ayuda a validar
+
+            info = form_inicio.cleaned_data #data que se escribio en el formulario de login en modo diccionario 
+            usuario = info.get("username")
+            contra = info.get("password")
+
+            #acá hacemos la validación
+            user = authenticate(username=usuario, password=contra) #existe el usuario (retorna el usuario) ---- no existe usuario (retorna None)
+
+            if user:
+                login(request, user)    #iniciar sesion ya que el usuario si existe (credenciales correctas)
+                return render(request, "AppCoder/inicio.html", {"usuario":user})
+        
+        else:
+            return render(request,"AppCoder/inicio.html", {"mensaje":"DATOS INCORRECTOS"})
+
+    form_inicio = AuthenticationForm() #formulario vacio
+
+    return render(request,"AppCoder/login.html", {"form":form_inicio} )
+
+
+
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class CursoUpdateView(LoginRequiredMixin, UpdateView):
+
+class CursoDeleteView(LoginRequiredMixin, DeleteView):
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def inicio(request):
+    return render(request, 'AppCoder/inicio.html')
+
+LOGIN_URL = '/AppCoder/login'
