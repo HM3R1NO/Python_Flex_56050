@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block cuerpo %}
+<h2>Detalles de la tarea</h2>
+<div class="card text-center">
+    <div class="card-header">
+      Prioridad {{ tarea.prioridad }}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ tarea.titulo }}</h5>
+        <p class="card-text">{{ tarea.descripcion }}</p>
+        {% include 'layouts/tareas/parts/botones-crud.html' %}
+    </div>
+    <div class="card-footer text-muted">
+      Creado en {{ tarea.fecha }} para entregar en <span class="badge text-bg-warning rounded-pill">{{ tarea.fecha_entrega }}</span>
+    </div>
+  </div>
+{% endblock cuerpo %}

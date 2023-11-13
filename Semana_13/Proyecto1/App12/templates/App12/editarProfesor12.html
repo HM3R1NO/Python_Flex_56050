@@ -1,0 +1,34 @@
+{% extends 'AppCoder/index.html'%}
+{% load static %}
+
+{% block titulo%}Editar Profes Form12{% endblock titulo%}
+
+
+
+{% block cuerpo%}
+
+    <h1 class="text-bg-info">Soy un Formulario</h1>
+    <h1 class="text-center">Editar Form</h1>
+    <div class="container mt-2">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+                <h1>Formulario - Editar Profesor</h1>
+                    
+                {% if miFormulario.errors %}
+                    <p style="color: red;"> Están mal los datos, revisar</p>
+                {% endif %}
+
+                <form action="" method="POST">{% csrf_token %}
+
+                    <!-- Acá está la magia de Django-->
+                    <table>
+                        {{ miFormulario.as_table }}
+                    </table>
+                    <input type="submit", value="Enviar">
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endblock cuerpo%}

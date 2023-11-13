@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block cuerpo %}
+<h2>Crear tarea</h2>
+<form action="{% url 'guardar-tareas' %}" method="POST">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <input type="submit" value="Crear">
+</form>
+{% endblock cuerpo %}

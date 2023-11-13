@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block cuerpo %}
+<h2>Actualizar tarea</h2>
+<form action="{% url 'actualizar-tareas' id=id %}" method="POST">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <input type="submit" value="Actualizar">
+</form>
+{% endblock cuerpo %}

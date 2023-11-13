@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block cuerpo %}
+<h2>Eliminar contacto</h2>
+<form action="{% url 'eliminar-contactos' nombre=nombre %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete.">
+</form>
+<input value="Cancel" type="button" onclick="location.href='{% url "index" %}';">
+</div>
+{% endblock cuerpo %}
