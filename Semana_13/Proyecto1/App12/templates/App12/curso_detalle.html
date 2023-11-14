@@ -6,6 +6,13 @@
 <p>Nombre del Curso: <i>{{curso.nombre}}</i></p>
 <p>Camada: <i>{{curso.camada}}</i></p>
 <p>
+    {% if curso.imagen %}
+        <img src={{curso.imagen.url}} height='100px'>
+    {%else%}
+        No tiene cargada la imagen.
+    {%endif%}
+    </p>
+<p>
     <a href="{% url 'ListaCursos' %}">Regresar</a>
 </p>
 {% endblock cuerpo  %}

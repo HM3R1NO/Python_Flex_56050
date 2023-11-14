@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from AppCoder.models import Curso, Estudiante, Profesor
-from django.http import HttpResponse
+from AppCoder.models import Curso, Estudiante, Profesor, Avatar
+from django.http import HttpResponse, HttpResponseNotFound
 from AppCoder.forms import EstudianteForm, ProfesorForm
 from App12.forms import *
 from django.contrib.auth.forms import AuthenticationForm
@@ -11,6 +11,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+
+
+from django.core.files import File
+
 
 # Create your views here.
 def curso(self):
@@ -124,18 +128,51 @@ def register(request):
 
 # Vista de editar el perfil
 @login_required
+@login_required
 def editarPerfil(request):
     usuario = request.user
-    if request.method == 'POST':
-        miFormulario = UserEditForm(request.POST, instance=request.user)
-        if miFormulario.is_valid():
-            miFormulario.save()
 
+    # Manejar solicitudes para favicon.ico
+    if request.path == '/favicon.ico/':
+        return HttpResponseNotFound()
+
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST, request.FILES, instance=request.user)
+        if miFormulario.is_valid():
+            if hasattr(usuario, 'avatar') and usuario.avatar:
+                if miFormulario.cleaned_data.get('imagen'):
+                    usuario.avatar.imagen = miFormulario.cleaned_data.get('imagen')
+                    usuario.avatar.save()
+                else:
+                    # Si no se proporciona una imagen, establece una imagen por defecto
+                    imagen_por_defecto = 'media/avatares/nonavatar.png'
+                    with open(imagen_por_defecto, 'rb') as f:
+                        usuario.avatar.imagen.save('imagen_por_defecto.jpg', File(f))
+            else:
+                # Si el usuario no tiene un avatar, crea uno y guarda la imagen
+                avatar = Avatar.objects.create(user=usuario)
+                if miFormulario.cleaned_data.get('imagen'):
+                    avatar.imagen = miFormulario.cleaned_data.get('imagen')
+                    avatar.save()
+                else:
+                    # Si no se proporciona una imagen, establece una imagen por defecto
+                    imagen_por_defecto = 'media/avatares/nonavatar.png'
+                    with open(imagen_por_defecto, 'rb') as f:
+                        avatar.imagen.save('imagen_por_defecto.jpg', File(f))
+
+            miFormulario.save()
             return render(request, "AppCoder/index.html")
     else:
-        miFormulario = UserEditForm(instance=request.user)
-    return render(request, "AppCoder/editar_perfil.html", {"miFormulario": miFormulario, "usuario": usuario})
+        # Si el usuario no tiene avatar, crea uno y establece la imagen por defecto en el formulario
+        if not hasattr(usuario, 'avatar') or not usuario.avatar:
+            avatar = Avatar.objects.create(user=usuario)
+            imagen_por_defecto = 'media/avatares/nonavatar.png'
+            with open(imagen_por_defecto, 'rb') as f:
+                avatar.imagen.save('imagen_por_defecto.jpg', File(f))
 
+        miFormulario = UserEditForm(initial={'imagen': usuario.avatar.imagen}, instance=request.user)
+
+    return render(request, "AppCoder/editar_perfil.html", {"miFormulario": miFormulario, "usuario": usuario})
 class CambiarContrasenia(LoginRequiredMixin, PasswordChangeView):
     template_name = 'AppCoder/editar_contrasenia.html'
     success_url = reverse_lazy('editarPerfil')

@@ -23,6 +23,7 @@
                 <a class="navbar-brand" href="{% url 'home'%}">Start Bootstrap</a>
                 <a class="text-danger" href="{% url 'curioso' %}"> Cursos</a>
                 <a class="text-success" href="{% url 'cursoForm' %}"> Curso Form</a>
+                <a class="text-success" href="{% url 'NuevoCurso' %}"> Curso Nuevo</a>
                 <a class="text-success" href="{% url 'profesorForm' %}"> Profesor Form</a>
                 <a class="text-success" href="{% url 'estudianteForm' %}"> Estudiante Form</a>
                 
@@ -35,6 +36,9 @@
                     <a class="navbar-brand" href="#">{{request.user.username}}</a>
                     <a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a>
                     <a class="btn btn-danger" href="{% url 'editarPerfil' %}">Edita Perf</a>
+                    {% if request.user.avatar %}
+                        <img src="{{request.user.avatar.imagen.url}}" alt="" height="40px">
+                    {% endif %}
                 {% endif %}
             </div>
         </nav>
